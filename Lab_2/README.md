@@ -3,7 +3,63 @@
 <p align = "center"><b>Lab Partner: Angie Thai </b></p>
 
 ## Background
-In this lab, we built our first clock generator. Clock generators are used in almost every application to synchronize circuits so it is essential to understand how they work. 
+The purpose of this lab was to build our first clock generator. Clock generators are used in almost every application to synchronize circuits so it is essential to understand how they work. While previous course offerings focused on building Colpitts oscillators, we concentrated on the clock generator as it is far more common in modern circuits. In this lab, we demonstrated the functionality of the SI5351 clock generator IC controlled by an ItsyBitsy M4 Express. 
 
-### Si5351
-Our circuit is based off of the Si5351 clock generator module. 
+### Clock Generators
+
+<p align = "center">
+<img src = "assets/SI5351.jpg" width=500">
+</p>
+<p align = "center">
+Fig.1 - Diagram of SI5351
+</p>
+
+The Si5351 clock generator is a low-cost and low-power IC that's used widely for applications ranging from performance test equipment to residential gateways. In Fig 1., the onboard precision clock and 25MHz reference crystal are indicated by the red circle. The IC also contains configurable PLL's and clock dividers which allow it to generate frequencies between 8kHz to 160MHz. The three SMA connectors correspond to three different outputs. 
+
+### Experiment
+
+<p align = "center">
+<img src = "assets/setup.png" width="500">
+</p>
+<p align = "center">
+Fig.2 - Experimental setup for SI5351
+</p>
+
+Fig.2 Shows the experimental setup of our module. We put both the ItsyBitsy and SI5351 onto a breadboard and connected their I2C lines so that we could configure the frequency outputs. All of our code for this project was written in CircuitPython. First, we followed [these steps](https://github.com/adafruit/Adafruit_CircuitPython_SI5351) to load the Circuit Python bootloader onto our ItsyBitsy board. The code editor we used in this case was the [Mu Editor](https://codewith.mu/) because it allowed for seemlessly editing and uploading our code to the board. We then connected our SMA outputs to both the Spectrum Analyzer and the Oscilloscope to analyze the signal. 
+
+## Results 
+
+The initial code we ran configured the clocks to be 112.5 MHz, 13.6 MHz, and 10.76 kHz respectively. The process for configuring each clock starts with configuring the PLL. For example, PLL A is set to 900 Mhz using the following command: 
+                   
+    si5351.pll_a.configure_integer(36)
+                   
+In this case, we are simply by multiplying the 25 MHz onboard crystal by 36. Now, we set our clock divider to 8 to get the final frequency of 112.5 MHz for CLK0 with: 
+                   
+    si5351.clock_0.configure_integer(si5351.pll_a, 8)
+
+The output of both the spectrum analyzer and the oscilloscope are show in Fig.3. 
+<p float="left">
+<img src = "assets/clk0_SA.JPG" width="500">
+<img src = "assets/clk0.JPG" width="500">
+</p>
+<p align = "center">
+Fig. 3 - Left: Frequency spectrum of CLK0 running at 112.5 MHz. Right: V vs t of CLK0 running at 112.5 MHz.
+</p>
+
+<p float="left">
+<img src = "assets/clk1_SA.JPG" width="500">
+<img src = "assets/clk1.JPG" width="500">
+</p>
+<p align = "center">
+Fig. 4 - Left: Frequency spectrum of CLK1 running at 13.6 MHz. Right: V vs t of CLK1 running at 13.6 MHz.
+</p>
+                   
+<p float="left">
+<img src = "assets/clk2_SA.JPG" width="500">
+<img src = "assets/clk2.JPG" width="500">
+</p>
+<p align = "center">
+Fig. 5 - Left: Frequency spectrum of CLK2 running at 10.76 kHz. Right: V vs t of CLK2 running at 10.76 kHz.
+</p>
+                   
+## Conclusion
