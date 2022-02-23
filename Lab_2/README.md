@@ -63,6 +63,7 @@ Finally, we examined the output of CLK2 which has a frequency that is several or
 <p align = "center">
 Fig. 5 - Left: Frequency spectrum of CLK2 running at 10.76 kHz. Right: V vs t of CLK2 running at 10.76 kHz.
 </p>
-As you can see, the signal integrety decreases significantly when we try to use the PLLs to multiply the clock frequency far beyond the 25 MHz crystal frequency. Looking back at Fig.3, we notice that at higher frequencies the output on the oscilloscope resembles more of a sine wave than a square wave. It's likely that the slew rate of certain components on the board is too slow to reach the peak voltage at higher freqencies which explains the slope on the rise and fall. 
+As you can see, the signal integrety decreases significantly when we try to use the PLLs to multiply the clock frequency far beyond the 25 MHz crystal frequency. Looking back at Fig.3, we notice that at higher frequencies the output on the oscilloscope resembles more of a sine wave than a square wave. In this case, it's likely that coupling from the parasitics is acting like a low pass filter and generating the sinusoidal shape. As we get up to the edge of the frequency range, it is also possible that the slew rates of the various components on the board are too slow to reach the peak voltage at higher freqencies which explains the slope on the rise and fall. 
 
 ## Conclusion
+In this lab, we studied the important of clock generators and their many applicatioins in modern circuit. Then we demonstrated how to setup and program the SI5351 using an ItsyBitsy and CircuitPython. Finally, we observed that the output degrades at higher frequencies which makes the SI5351 unsuitable for projects requiring precise timing at higher frequencies. 
