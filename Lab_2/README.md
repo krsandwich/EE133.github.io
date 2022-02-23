@@ -8,15 +8,15 @@ The purpose of this lab was to build our first clock generator. Clock generators
 ### Clock Generators
 
 <p align = "center">
-<img src = "assets/SI5351.jpg" width=500">
+<img src = "assets/SI5351.jpg" width="500">
 </p>
 <p align = "center">
 Fig.1 - Diagram of SI5351
 </p>
 
-The Si5351 clock generator is a low-cost and low-power IC that's used widely for applications ranging from performance test equipment to residential gateways. In Fig 1., the onboard precision clock and 25MHz reference crystal are indicated by the red circle. The IC also contains configurable PLL's and clock dividers which allow it to generate frequencies between 8kHz to 160MHz. The three SMA connectors correspond to three different outputs. 
+The Si5351 clock generator is a low-cost and low-power IC that's used widely for applications ranging from performance test equipment to residential gateways. In Fig 1., the onboard precision clock and 25MHz reference crystal are indicated by the red circle. The IC also contains configurable PLL's and clock dividers which allow it to generate frequencies between 8kHz to 160MHz. The three SMA connectors correspond to three different outputs, each with a 3Vpp waveform. 
 
-### Experiment
+## Experiment
 
 <p align = "center">
 <img src = "assets/setup.png" width="500">
@@ -45,6 +45,8 @@ The output of both the spectrum analyzer and the oscilloscope are show in Fig.3.
 <p align = "center">
 Fig. 3 - Left: Frequency spectrum of CLK0 running at 112.5 MHz. Right: V vs t of CLK0 running at 112.5 MHz.
 </p>
+                   
+Next, we showed the output of CLK1 which is running at a much lower frequency than CLK0. In Fig.4, the spectrum analyzer has a well-defined peak at 13.6 MHz and the oscilloscope output more closely resembles a square wave.  
 
 <p float="left">
 <img src = "assets/clk1_SA.JPG" width="500">
@@ -53,7 +55,7 @@ Fig. 3 - Left: Frequency spectrum of CLK0 running at 112.5 MHz. Right: V vs t of
 <p align = "center">
 Fig. 4 - Left: Frequency spectrum of CLK1 running at 13.6 MHz. Right: V vs t of CLK1 running at 13.6 MHz.
 </p>
-                   
+Finally, we examined the output of CLK2 which has a frequency that is several orders of magnitude lower than both the other clocks. In Fig.5, you can see that the spectrum analyzer shows significantly less noise and has a sharp peak around 10.76 kHz and the oscilloscope output looks like a perfect square wave.          
 <p float="left">
 <img src = "assets/clk2_SA.JPG" width="500">
 <img src = "assets/clk2.JPG" width="500">
@@ -61,5 +63,6 @@ Fig. 4 - Left: Frequency spectrum of CLK1 running at 13.6 MHz. Right: V vs t of 
 <p align = "center">
 Fig. 5 - Left: Frequency spectrum of CLK2 running at 10.76 kHz. Right: V vs t of CLK2 running at 10.76 kHz.
 </p>
-                   
+As you can see, the signal integrety decreases significantly when we try to use the PLLs to multiply the clock frequency far beyond the 25 MHz crystal frequency. Looking back at Fig.3, we notice that at higher frequencies the output on the oscilloscope resembles more of a sine wave than a square wave. It's likely that the slew rate of certain components on the board is too slow to reach the peak voltage at higher freqencies which explains the slope on the rise and fall. 
+
 ## Conclusion
