@@ -3,7 +3,9 @@
 <p align = "center"><b>Lab Partner: Angie Thai </b></p>
 
 ## Background
-In this lab, we built our first RF mixer. Mixers are 3-port devices which take the sum and difference of two ports, RF and LO, and output both to the other port, IF. We chose to create FET ring mixers because they are have some gain and are popular for commercial use. However, dioide ring mixers generally perform better because they are easier to match and therefore provide better rejection. 
+In this lab, we built our first passive double balanced RF mixer. Mixers are 3-port devices which take the sum and difference of two ports, RF and LO, and output both to the other port, IF. A double balanced mixer has full port isolation which allows it to increase linearity and supress more spurious products.
+
+We chose to create FET ring mixers because they require less power for a given IIP3 and are popular for commercial use. However, dioide ring mixers generally perform better because they are easier to match and therefore provide better rejection. 
 
 ### FET Ring Mixer
 In Fig.1, you can see the schematic for a FET Ring Mixer. 
@@ -24,17 +26,44 @@ Based off of the diagram above, we used the following parts to assemble the circ
 As shown in Fig.2, we preplanned the connections using the selectted parts to make construction easer. 
 
 <p align = "center">
-<img src = "assets/diagram.jpg" width="600">
+<img src = "assets/diagram.jpg" width="500">
 </p>
 <p align = "center">
 Fig.2 - Diagram of circuit using selected parts
 </p>
 
+
 ## Results
 
-Now, that we've had some fun playing with LTSpice, lets learn how to use a VNA so that we can measure the parasitics of our real world components. 
+First, we will analyze at the output of the mixer by using a function generator to set LO to 12 MHz and RF to 2 MHz as shown in Fig.3.
 
+<p float="left">
+<img src = "assets/LO.JPG" width="500">
+<img src = "assets/RF.JPG" width="500">
+</p>
+<p align = "center">
+Fig. 3 - Left: LO at 12MHz. Right: RF at 2MHz.
+</p>
 
+Now, looking at Fig.4, we can see that the output shown on the Spectrum Analyzer is exactly as expected. We have a peak at 10 MHz which represents <img src="https://render.githubusercontent.com/render/math?math=IF=LO-RF"> and then another large peak at 14 MHz which represents <img src="https://render.githubusercontent.com/render/math?math=IF=LO+RF">. 
+
+<p align = "center">
+<img src = "assets/IF.JPG" width="500">
+</p>
+<p align = "center">
+Fig.4 - IF shown on Spectrum Analyzer
+</p>
+
+Now to find the 1db compression point, we change input level of RF by 1db and find the point when the gain of IF no longer increases by 1db. In our case, the compression point was 15db and the corresponding IF output is shown in Fig. 4. 
+
+<p align = "center">
+<img src = "assets/IF.JPG" width="500">
+</p>
+<p align = "center">
+Fig.4 - IF at 1-db compression point 
+</p>
+
+The conversion gain is given by 
 
 ## Conclusion
 
