@@ -39,7 +39,7 @@ As shown in Fig.2, we preplanned the connections using the selected parts to mak
 Fig.2 - Diagram of circuit using selected parts
 </p>
 
-I have included an image of the final circuit in Fig.3 below. 
+In Fig.3, we show the final result. The entire circuit was built on top of a 2" x 2" piece of copper clad strip board. Each part of the board was verified for connectivity using a multimeter.   
 
 <p align = "center">
 <img src = "assets/final.JPG" width="500">
@@ -48,11 +48,10 @@ I have included an image of the final circuit in Fig.3 below.
 Fig.3 - Image of final circuit
 </p>
 
-Each part of the board was verified for cocnnectivity using a multimeter. 
-
 ## Results
 
-First, we will analyze at the output of the mixer by using a function generator to set RF to 12 MHz and LO to 2 MHz as shown in Fig.4. This configuration is known as aa high-side downconverter since RF is set to a higher frequency that our LO input. 
+First, we will analyze at the output of the mixer by using a function generator to set RF to 12 MHz and LO to 2 MHz as shown in Fig.4. This configuration is known as a high-side downconverter since RF is set to a higher frequency that our LO input. 
+
 
 <p float="left">
 <img src = "assets/LO.JPG" width="500">
@@ -103,13 +102,13 @@ To find the minimum IF frequency, we started with RF at 12.1 MHz and LO at 12 MH
 ## Conclusion
 To summarize our results, we will look at how our FET ring performed according to the following key metrics: 
 
-*Compression Point*
+__Compression Point__
 The compression Point is an essential metric in a circuit because it gives the upper bound for when your signal will begin to see some distortion. The compression point is a function of the switch transition time and so it is largely determined by the underlying architecture. For example, FET Mixers have higher P1dB than Diode mixers but, by selecting diodes with fast turn on frequency capabilities, you can significantly improve the P1dB. In this case, we measured a compression point of 15dB which was around 4-6dB higher than a comprable diode ring mixer. 
 
-*Conversion Loss*
+__Conversion Loss__
 Since we are using a passive architecture, it is normal to assume there will be some conversion loss. FET ring mixers have especially high conversion loss in comparison with diode ring mixers. We found our mixer had a conversion loss of 9db which was on the upper range of the product specification. In an application circuit, we would attach our mixer to an amplifier so this number would come in handy when defining the later stages of the system. 
 
-*Minimum IF Frequency*
+__Minimum IF Frequency__
 Our mixers were only able to obtain a 30 KHz minimum IF frequnecy before showing significant signal deterioration. The PE4141 is only rated to go to 10 kHz which still does not allow for Zero-IF. The advantage of Zero-IF is that it avoids the suprious image product issue and allows us to remove a lot of the filtering circuitry. On the other hand, decreasing the IF frequency requires us to increase the LO isolation as any leakage will severely corrupt the IF output. Our FET ring mixers cannot reach zero-IF, however, the diode ring mixers should go to DC. 
 
 In conclusion, we went over the role of mixers, surveyed their architecture and functionality, built our very own double-balanced FET ring mixer, and, lastly, evaluated the performance of our mixer. 
